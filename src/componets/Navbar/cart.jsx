@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 
@@ -34,6 +35,7 @@ function cart() {
       <div className="container my-4">
         {cart.map((item) => (
           <div key={item.id} className="d-flex flex-column p-3 my-2 border border-1 w-50 ">
+            <p>ID: {item.id} </p>
             <p key={item.id}>Nombre: {item.name} </p>
             <p>Cantidad: {item.quantity} </p>
             <p>Precio Unitario: {item.price} </p>
@@ -47,14 +49,19 @@ function cart() {
         ))}
       </div>
       <div className="container">
-          <h4>Total: prox...</h4>
-          <button className="btn btn-outline-success" onClick={clearCart}>
-            Vaciar Carrito
-          </button>
-          <button className="btn btn-outline-success ms-2" onClick={clearCart}>
-            Comprar todo
-          </button>
-      
+        {total > 0 ? (
+          <>
+            <h4>Total: ${total}</h4>
+            <button className="btn btn-outline-success" onClick={clearCart}>
+              Vaciar Carrito
+            </button>
+            <Link to="/pagar">
+              <button className="ms-2 btn btn-success">Comprar</button>
+            </Link>
+          </>
+        ) : (
+          <h4>Carrito vacío, ponele mas onda compra algo :/</h4>
+        )}
       </div>
     </>
     )

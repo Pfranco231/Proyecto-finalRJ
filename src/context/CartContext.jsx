@@ -7,6 +7,7 @@ export const CartContext = createContext(null);
 export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const addItem = (item, quantity) => {
     const cartCopy = [...cart];
@@ -40,15 +41,22 @@ export const CartContextProvider = ({ children }) => {
     const newTotalItems = cart.reduce( (acum, item) => acum + item.quantity, 0 );
     setTotalItems(newTotalItems);
 
-   }
+  }
+
+  const sumando = () => {
+      const precioactual = cart.reduce((acum, item) => acum + item.price * item.quantity, 0);
+      setTotal(precioactual);
+  }
 
    useEffect( () => { 
-    handleTotalItems()
+    handleTotalItems();
+    sumando();
     }, [cart] )
 
   const objectValues = {
     cart,
     totalItems,
+    total,
     addItem,
     removeItem,
     clearCart,

@@ -8,6 +8,7 @@ import Footer from "./componets/footer";
 import LaptopDetailContainer from "./componets/detailcontainer/laptopDetailContainer";
 import PhoneDetailContainer from "./componets/detailcontainer/phoneDetailConteiner";
 import Cart from "./componets/Navbar/cart";
+import Pagar from "./componets/Pagar/Pagar"
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/cart" element={ <Cart /> } />
           <Route path="laptops/laptop/:id" element={ <LaptopDetailContainer /> } />
           <Route path="phone/:id" element={ <PhoneDetailContainer /> } />
+          <Route path="/Pagar" element={<Pagar />} />
           <Route path="*" element={<center><h3>404: Pagina no encontrada</h3></center>} />
 
         </Routes>
